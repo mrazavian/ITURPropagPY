@@ -27,10 +27,10 @@ Installation
 ------------
 
 ITU-RPropagpy has the followind dependencies: ``numpy``, ``scipy``,
-``joblib``, ``pyproj``, 'h5py', and ``astropy``. Installation of ``basemap`` and
+``joblib``, ``pyproj``, ``h5py``, and ``astropy``. Installation of ``basemap`` and
 ``matplotlib`` is recommended to display results in a map.
 
-Using pip, you can install all of them by running:
+Using python, you can install all of them by running:
 
 ::
 
