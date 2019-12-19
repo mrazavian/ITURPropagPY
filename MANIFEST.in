@@ -1,0 +1,10 @@
+include iturpropag/data/p453/*.*
+include iturpropag/data/p530/*.*
+include iturpropag/data/p676/*.*
+include iturpropag/data/p836/*.*
+include iturpropag/data/p837/*.*
+include iturpropag/data/p839/*.*
+include iturpropag/data/p840/*.*
+include iturpropag/data/p1510/*.*
+include iturpropag/data/p1511/*.*
+include iturpropag/data/p1853/*.*
