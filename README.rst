@@ -1,4 +1,4 @@
-ITURPROPAGpy
+ITURPropagPy
 =======
 
 |GitHub license| |Build Status| |PyPI version| |Coverage Status|
