@@ -21,7 +21,7 @@ Documentation
 The documentation can be found at `https://github.com/mrazavian/ITURPropagPY'
 
 Examples of use cases can be found in the
-`https://github.com/mrazavian/ITURPropagPY/examples>`__.
+`https://github.com/mrazavian/ITURPropagPY/Examples>`__.
 
 Installation
 ------------
@@ -30,11 +30,11 @@ ITU-RPropagpy has the followind dependencies: ``numpy``, ``scipy``,
 ``joblib``, ``pyproj``, ``h5py``, and ``astropy``. Installation of ``basemap`` and
 ``matplotlib`` is recommended to display results in a map.
 
-Using python, you can install all of them by running:
+Using pip , you can install all of them by running:
 
 ::
 
-    python setup.py install
+    pip install iturpropag
 
 More information about the installation process can be found on the
 `https://github.com/mrazavian/ITURPropagPY`__.
@@ -64,8 +64,8 @@ The individual models can be accessed using the ``iturpropag.models`` package.
 Usage
 -----
 
-The following code example shows the usage of ITU-Rpy. More examples can
-be found in the `https://github.com/mrazavian/ITURPropagPY`__.
+The following code example shows the usage of ITURPropagPY. More examples can
+be found in the `https://github.com/mrazavian/ITURPropagPY/Examples`__.
 
 .. code:: python
 
@@ -95,10 +95,23 @@ If you use ITURPropagPY in one of your research projects, please cite it as:
 ::
 
     @misc{iturpropagpy-2019,
-          title={ITU-Rpy: A python implementation of the ITU-R P. Recommendations to compute atmospheric
-             attenuation in slant and horizontal paths.},
-          author={Inigo del Portillo, Mojtaba Razavian},
+          title={ITURPropagPY: A python implementation of the ITU-R P. Recommendations to compute atmospheric attenuation in slant and horizontal paths.},
+          author={Inigo del Portillo, Mojtaba Razavian, Thomas A. Prechtl},
           year={2019},
           publisher={GitHub},
           howpublished={\url{https://github.com/mrazavian/ITURPropagPY}}
     }
+
+Keywords: atmopheric-propagation attenuation communications
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Telecommunications Industry
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: License :: OSI Approved :: ESA-PL – v2.3
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7

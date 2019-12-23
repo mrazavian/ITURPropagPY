@@ -148,8 +148,10 @@ setup(
                  'data/p840/*.*',
                  'data/p1510/*.*',
                  'data/p1511/*.*',
-                 'data/p1853/*.*']
-    },
+                 'data/p1853/*.*'],
+        'Examples': ['SG3.xlsx']
+                 },
+                 
     project_urls={  # Optional
         'Bug Reports': 'https://github.com/mrazavian/ITURPropagPY/issues',
         'Source': 'https://github.com/mrazavian/ITURPropagPY',

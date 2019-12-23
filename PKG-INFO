@@ -12,7 +12,7 @@ Editor-email: thomas.prechtl@joanneum.at,
 License: ESA Permissive 2.3
 Project-URL: CHANGELOG.txt, https://github.com/mrazavian/ITURPropagPY
 Project-URL: Source, https://github.com/mrazavian/ITURPropagPY
-Description: ITURPROPAGpy
+Description: ITURPropagPY
         =======
         
         |GitHub license| |Build Status| |PyPI version| |Coverage Status|
@@ -38,15 +38,15 @@ Description: ITURPROPAGpy
         Installation
         ------------
         
-        ITU-RPropagpy has the followind dependencies: ``numpy``, ``scipy``,
-        ``joblib``, ``pyproj``,'h5py', and ``astropy``. Installation of ``basemap`` and
+        ITURPropagPY has the followind dependencies: ``numpy``, ``scipy``,
+        ``joblib``, ``pyproj``, ``h5py``, and ``astropy``. Installation of ``basemap`` and
         ``matplotlib`` is recommended to display results in a map.
         
         Using pip, you can install all of them by running:
         
         ::
         
-            python setup.py install
+            pip install iturpropag
         
         More information about the installation process can be found on the
         `documentation <https://github.com/mrazavian/ITURPropagPY>`__.
@@ -54,7 +54,7 @@ Description: ITURPROPAGpy
         ITU-R Recommendations implemented:
         ----------------------------------
         
-        The following ITU-R Recommendations are implemented in ITU-Rpy \*
+        The following ITU-R Recommendations are implemented in ITURPropagPY \*
         **ITU-R P.453-13:** The radio refractive index: its formula and
         refractivity data \* **ITU-R P.618-13:** Propagation data and prediction
         methods required for the design of Earth-space telecommunication systems
@@ -76,9 +76,9 @@ Description: ITURPROPAGpy
         Usage
         -----
         
-        The following code example shows the usage of ITU-Rpy. More examples can
+        The following code example shows the usage of ITURPropagPY. More examples can
         be found in the `examples
-        folder <https://github.com/mrazavian/ITURPropagPY>`__.
+        folder <https://github.com/mrazavian/ITURPropagPY/Examples>`__.
         
         .. code:: python
         
@@ -107,10 +107,10 @@ Description: ITURPROPAGpy
         
         ::
         
-            @misc{iturpropagpy-2018,
-                  title={ITU-Rpy: A python implementation of the ITU-R P. Recommendations to compute atmospheric
+            @misc{iturpropagpy-2019,
+                  title={ITURPropagPY: A python implementation of the ITU-R P. Recommendations to compute atmospheric
                      attenuation in slant and horizontal paths.},
-                  author={Inigo del Portillo, Mojtaba Razavian},
+                  author={Inigo del Portillo, Mojtaba Razavian, Thomas A. Prechtl},
                   year={2019},
                   publisher={GitHub},
                   howpublished={\url{https://github.com/mrazavian/ITURPropagPY}}
@@ -123,7 +123,7 @@ Platform: UNKNOWN
 Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Telecommunications Industry
 Classifier: Topic :: Scientific/Engineering :: Physics
-Classifier: License :: OSI Approved :: ESA License
+Classifier: License :: OSI Approved :: ESA-PL – v2.3
 Classifier: Programming Language :: Python :: 2
 Classifier: Programming Language :: Python :: 2.7
 Classifier: Programming Language :: Python :: 3
