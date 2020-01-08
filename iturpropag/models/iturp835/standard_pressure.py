@@ -194,7 +194,6 @@ def standard_pressure(h, T_0=288.15, P_0=1013.25):
 
     type_output = type(h)
     h = prepare_quantity(h, u.km, 'Height')
-    h = prepare_input_array(h).flatten()
     T_0 = prepare_quantity(T_0, u.Kelvin, 'Surface temperature')
     P_0 = prepare_quantity(P_0, u.hPa, 'Surface pressure')
     val = __model.standard_pressure(h, T_0, P_0)

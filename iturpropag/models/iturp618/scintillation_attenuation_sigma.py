@@ -198,8 +198,8 @@ def scintillation_attenuation_sigma(lat, lon, f, el, D, eta, T=None,
     """
     global __model
 
-    lat = prepare_input_array(lat).flatten()
-    lon = prepare_input_array(lon).flatten()
+    lat = prepare_input_array(lat)
+    lon = prepare_input_array(lon)
 
     type_output = type(lat)
 
