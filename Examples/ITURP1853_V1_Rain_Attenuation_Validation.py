@@ -13,24 +13,28 @@ from iturpropag.utils import ccdf
 ##               validate the ITU-R P.1853.1--section 2
 ##            Rain Attenuation time series synthesis method
 ##################################################################################
-lat = 42.31
-lon = -70.91
-print('\nThe ITU-R P.1853 recommendation predict rain attenuation time-series\n'+\
-        'the following values for the Rx ground station coordinates (Boston, MA)')
-print('Lat = 42.31, Lon = -70.91')
+# Location of the receiver ground stations
+cities = {'Louvain-La-Neuve': (50.66, 4.62),
+          #'Geneva': (46.20, 6.15)
+          }
+
+lat = [coords[0] for coords in cities.values()]
+lon = [coords[1] for coords in cities.values()]
+print('\nThe ITU-R P.1853-1 recommendation predict rain attenuation time-series\n'+\
+              'the following values for the Rx ground station coordinates')
 
 # Link parameters
-el = 60                # Elevation angle equal to 60 degrees
-f = 22.5 * u.GHz       # Frequency equal to 22.5 GHz
-tau = 45               # Polarization tilt
-D = 900*24*3600        #  duration (second) (900 days)
+el = [35]             # Elevation angle equal to 60 degrees
+f = [39.4] * u.GHz       # Frequency equal to 22.5 GHz
+tau = [45]               # Polarization tilt
+D = 3*365*24*3600        #  duration (second) (3 years)
 Ts = 1                 # Ts : sampling
 Ns = int(D / (Ts**2))  # number of samples
 
 print('Elevation angle:\t\t',el,'°')
 print('Frequency:\t\t\t',f)
 print('Polarization tilt:\t\t',tau,'°')
-print('Sampling Duration:\t\t',900,'days')
+print('Sampling Duration:\t\t',D/(24*3600),'days')
 #--------------------------------------------------------
 #  rain attenuation time series synthesis by ITU-R P.1853
 #--------------------------------------------------------
@@ -82,16 +86,10 @@ plt.xlim((10**-3.5, 5))
 plt.xscale('log')
 plt.xlabel('Time percentage (%)')
 plt.ylabel('Rain attenuation CCDF (dB)')
+plt.title('Rain Attenuation Statistics at Ground station Louvain-La-Neuve')
 plt.legend()
 plt.grid(which='both', linestyle=':', color='gray',
                  linewidth=0.3, alpha=0.5)
 plt.tight_layout()
 plt.show()
-'''
-plt.figure()
-plt.plot(ts_rain,lw=2)
-plt.xlabel('1000 days in seconds')
-plt.ylabel('Rain Attenuation (dB)')
-plt.grid(True)
-plt.show()
-'''
+

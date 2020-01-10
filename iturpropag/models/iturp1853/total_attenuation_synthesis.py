@@ -102,30 +102,30 @@ class _ITU1853_2():
         
         ho, hw = slant_inclined_path_equivalent_height(f, P).value
 
-        Ao = np.atleast_2d(ho * go / np.sin(np.deg2rad(el))).T @ np.ones((1, np.shape(n)[1]))
-        Ao = Ao[:, t_disc:]
+        Ao = np.atleast_2d(ho * go / np.sin(np.deg2rad(el))).T @ np.ones((1, n.shape[-1]))
+        Ao = Ao[:, np.ceil(t_disc/Ts).astype(int):]
 
         # Step MS_TOT_3:
         # calculate the water vapour attenuation time-series
         Awv = water_vapour_attenuation_synthesis(lat, lon, f, Ns, Ts=Ts, n=n).value
-        Awv = Awv[:,t_disc:]
+        Awv = Awv[:, np.ceil(t_disc/Ts).astype(int):]
 
         # Step MS_TOT_4:
         # Calculate the cloud attenuation time-series
         Ac = cloud_attenuation_synthesis(lat, lon, f, el, Ns, Ts=1, n=n,\
                     rain_contribution=True).value
-        Ac = Ac[:,t_disc:]
+        Ac = Ac[:, np.ceil(t_disc/Ts).astype(int):]
 
         # Step MS_TOT_5:
         # Calculate the rain attenuation time series
         Ar = rain_attenuation_synthesis(lat, lon, f, el, tau, 
                             Ns, hs=hs, Ts=1, n=n).value
-        Ar = Ar[:,t_disc:]
+        Ar = Ar[:, np.ceil(t_disc/Ts).astype(int):]
 
         # Step MS_TOT_6:
         # limit the cloud attenuation time-series
         Ac_thresh = specific_attenuation_coefficients(f, T=0) / np.sin(np.deg2rad(el))
-        Ac_thresh = np.atleast_2d(Ac_thresh).T @ np.ones((1,np.shape(Ac)[1])) 
+        Ac_thresh = np.atleast_2d(Ac_thresh).T @ np.ones((1, Ac.shape[-1])) 
         Ac = np.where(np.logical_and(0 < Ar, Ac_thresh < Ac),\
                         Ac_thresh, Ac)
 
@@ -141,7 +141,7 @@ class _ITU1853_2():
         # Step MS_TOT_8: Synthesize unit variance scintillation time series
         sci_0 = np.zeros_like(Awv)
         for ii,_ in enumerate(lat):
-            sci_0[ii,:] = scintillation_attenuation_synthesis(Ns * Ts, Ts=Ts).value
+            sci_0[ii,:] = scintillation_attenuation_synthesis(Ns, Ts=Ts).value
 
         # Step MS_TOT_9: Compute the correction coefficient time series Cx(kTs) in
         # order to distinguish between scintillation fades and enhancements:
@@ -154,7 +154,7 @@ class _ITU1853_2():
         
         # Step MS_TOT_11: Compute the scintillation standard deviation σ following
         # the method recommended in Recommendation ITU-R P.618.
-        sigma = np.atleast_2d(
+        sigma = np.atleast_1d(
                 scintillation_attenuation_sigma(lat, lon, f, el, D, \
                                             eta, Tm, H, P, hL).value)
         
@@ -272,7 +272,7 @@ class _ITU1853_1():
         Ao = ho * go * np.ones_like(Ar)
 
         # Step C15: Synthesize unit variance scintillation time series
-        sci_0 = scintillation_attenuation_synthesis(Ns * Ts, Ts=1).value
+        sci_0 = scintillation_attenuation_synthesis(Ns, Ts=1).value
 
         # Step C16: Compute the correction coefficient time series Cx(kTs) in
         # order to distinguish between scintillation fades and enhancements:
@@ -281,12 +281,12 @@ class _ITU1853_1():
 
         # Step C17: Transform the integrated water vapour content time series
         # V(kTs) into the Gamma distributed time series Z(kTs) as follows:
-        kappa, lambd = integrated_water_vapour_coefficients(lat, lon)
+        kappa, lambd = integrated_water_vapour_coefficients(lat, lon, None)
         Z = stats.gamma.ppf(np.exp(-(V / lambd)**kappa), 10, scale=0.1) 
 
         # Step C18: Compute the scintillation standard deviation σ following
         # the method recommended in Recommendation ITU-R P.618.
-        sigma = scintillation_attenuation_sigma(lat, lon, f, el, p, D, eta, Tm,
+        sigma = scintillation_attenuation_sigma(lat, lon, f, el, D, eta, Tm,
                                                 H, P, hL).value
 
         # Step C19: Compute the scintillation time series sci:
