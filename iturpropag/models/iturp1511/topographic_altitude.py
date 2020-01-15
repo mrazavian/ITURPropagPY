@@ -195,7 +195,7 @@ def topographic_altitude(lat, lon):
     - lat : number, sequence, or numpy.ndarray
             Latitudes of the receiver points (-90 < lat < 90)
     - lon : number, sequence, or numpy.ndarray
-            Longitudes of the receiver points (0 < lon < 360)
+            Longitudes of the receiver points (0 < lon < 360  or -180 < lon < 180)
             if the longitude is 
 
 
