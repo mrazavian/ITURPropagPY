@@ -34,7 +34,7 @@ Using pip , you can install all of them by running:
 
 ::
 
-    pip install iturpropag
+    pip install git+https://github.com/mrazavian/ITURPropagPY
 
 More information about the installation process can be found on the
 [<https://github.com/mrazavian/ITURPropagPY>].
@@ -88,7 +88,7 @@ be found in the [<https://github.com/mrazavian/ITURPropagPY/tree/master/Examples
 
 which produces:
 
-![alt text](https://github.com/mrazavian/ITURPropagPY/tree/master/Documents/att.png "Attenuation worldmap")
+![alt "atmospheric attenuation"](http://lgs6632.com/photo/15college/15cnat/images/15cnat3-0183.jpg "Atmospheric Attenuation")
 
 Citation
 --------
