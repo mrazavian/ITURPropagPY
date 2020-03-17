@@ -88,7 +88,7 @@ be found in the [<https://github.com/mrazavian/ITURPropagPY/tree/master/Examples
 
 which produces:
 
-![alt "atmospheric attenuation"](https://github.com/mrazavian/ITURPropagPY/tree/master/Documents/att.png "Atmospheric Attenuation")
+![alt "atmospheric attenuation"](https://i.pinimg.com/originals/cd/b2/7c/cdb27cd40c6c3af9f53df739c744d746.png "Atmospheric Attenuation")
 
 Citation
 --------

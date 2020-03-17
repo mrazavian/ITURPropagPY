@@ -66,6 +66,7 @@ European Space Agency Public License (ESA-PL) Permissive – v2.3
 
 7 Infringements
 ---------------
+
     7.1 If You have knowledge that exercising rights granted by this License infringes third party's intellectual property rights, including without limitation copyright and patent rights, You must take reasonable steps (such as notifying appropriate mailing lists or newsgroups) to inform ESA and those who received the Software about the infringement.
     7.2 You acknowledge that continuing to use the Software knowing that such use infringes third party rights (e.g. after receiving a third party notification of infringement) would expose you to the risk of being considered as intentionally infringing third party rights. In such event You should acquire the respective rights or modify the Software so that the Modification is non-infringing.
 
