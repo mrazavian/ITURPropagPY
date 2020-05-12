@@ -72,7 +72,7 @@ class _ITU453_12():
         self.link = 'https://www.itu.int/rec/R-REC-P.453-12-201609-I/en'
 
     def water_vapour_pressure(self, T, P, H):
-        return _ITU453_13.water_vapour_pressure(T, P, H)
+        return _ITU453_13().water_vapour_pressure(T, P, H)
 
 __model = __ITU453()
 
