@@ -117,7 +117,7 @@ class _ITU1853_2():
             if ne == nb:
                 inc = 0
             else:
-                inc = (jj - nb) / (ne - nb); 
+                inc = (jj - nb) / (ne - nb)
             
             Ht[nb -1 : ne] = inc * aa[ii + 1] + (1 - inc) * aa[ii]
             nb = int(ne + 1)
