@@ -1,5 +1,5 @@
 __all__ = ['cloud_attenuation_synthesis', 'integrated_water_vapour_coefficients',
-           'integrated_water_vapour_synthesis', 'cloud_liquid_water_synthesis'
+           'integrated_water_vapour_synthesis', 'cloud_liquid_water_synthesis',
            'water_vapour_attenuation_synthesis', 'rain_attenuation_synthesis', 
            'scintillation_attenuation_synthesis', 'total_attenuation_synthesis',
            'surface_mean_pressure', 'surface_mean_water_vapour_density',
