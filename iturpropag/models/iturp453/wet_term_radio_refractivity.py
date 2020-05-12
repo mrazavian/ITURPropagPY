@@ -68,7 +68,7 @@ class _ITU453_12():
 
     
     def wet_term_radio_refractivity(self, e, T):
-        return _ITU453_13.wet_term_radio_refractivity(e, T)
+        return _ITU453_13().wet_term_radio_refractivity(e, T)
 
 __model = __ITU453()
 
