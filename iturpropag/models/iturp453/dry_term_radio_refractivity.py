@@ -70,7 +70,7 @@ class _ITU453_12():
         self.link = 'https://www.itu.int/rec/R-REC-P.453-12-201609-I/en'
 
     def dry_term_radio_refractivity(self, P, e, T):
-        return _ITU453_13.dry_term_radio_refractivity(P, e, T)
+        return _ITU453_13().dry_term_radio_refractivity(P, e, T)
 
 
 __model = __ITU453()
