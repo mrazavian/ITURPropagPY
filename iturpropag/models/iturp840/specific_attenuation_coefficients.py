@@ -55,7 +55,7 @@ class __ITU840():
 
     def specific_attenuation_coefficients(self, f, T):
         # Abstract method to compute the specific attenuation coefficients
-        fcn = np.vectorize(self.instance.specific_attenuation_coefficients)
+        fcn = np.vectorize(self.instance.specific_attenuation_coefficients, excluded=[1])
         return fcn(f, T)
 
 
@@ -265,14 +265,14 @@ def specific_attenuation_coefficients(f, T):
     ----------
     - f : number
             Frequency (GHz)
-    - T : number
+    - T : sequence, array
             Temperature (degrees C)
 
 
     Returns
     -------
     - Kl: numpy.ndarray
-            Specific attenuation coefficient (dB/km)
+            Specific attenuation coefficient (dB/km)/(g/m3)
 
 
     References
