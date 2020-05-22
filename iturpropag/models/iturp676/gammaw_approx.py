@@ -51,7 +51,7 @@ class __ITU676():
     def gammaw_approx(self, f, P, rho, t):
         # Abstract method to compute the specific attenuation due to water
         # vapour
-        fcn = np.vectorize(self.instance.gammaw_approx)
+        fcn = np.vectorize(self.instance.gammaw_approx, excluded=[1,2,3])
         return fcn(f, P, rho, t)
 
 
@@ -94,19 +94,21 @@ class _ITU676_11():
         b5 = self.b5[self.idx_approx]
         b6 = self.b6[self.idx_approx]
 
-        D_f_wv = b3 * 1e-4 * (p * theta ** b4 +
-                              b5 * e * theta ** b6)
+        N_pp_wv = 0
+        for ii in np.arange(np.size(f_wv)):
 
-        F_i_wv = f / f_wv * ((D_f_wv) / ((f_wv - f)**2 + D_f_wv**2) +
-                             (D_f_wv) / ((f_wv + f)**2 + D_f_wv**2))
+            D_f_wv = b3[ii] * 1e-4 * (p * theta ** b4[ii] +
+                                b5[ii] * e * theta ** b6[ii])
 
-        Si_wv = b1 * 1e-1 * e * theta**3.5 * np.exp(b2 * (1 - theta))
+            F_i_wv = f / f_wv[ii] * ((D_f_wv) / ((f_wv[ii] - f)**2 + D_f_wv**2) +
+                                (D_f_wv) / ((f_wv[ii] + f)**2 + D_f_wv**2))
 
-        N_pp_wv = Si_wv * F_i_wv
+            Si_wv = b1[ii] * 1e-1 * e * theta**3.5 * np.exp(b2[ii] * (1 - theta))
 
-        N_pp = N_pp_wv.sum()
+            N_pp_wv = N_pp_wv + Si_wv * F_i_wv
 
-        gamma = 0.1820 * f * N_pp           # Eq. 1 [dB/km]
+
+        gamma = 0.1820 * f * N_pp_wv           # Eq. 1 [dB/km]
         return gamma
 
     
@@ -119,6 +121,7 @@ class _ITU676_10():
         self.link = 'https://www.itu.int/rec/R-REC-P.676-10-201309-S/en'
 
     def gammaw_approx(self, f, P, rho, T): 
+        """calculate gamma water vapour V.10"""
         rp = P / 1013
         rt = 288 / (T)
         eta1 = 0.955 * rp * rt**0.68 + 0.006 * rho
@@ -156,7 +159,7 @@ class _ITU676_9():
     # Recommendation ITU-P R.676-9 has most of the methods similar to those
     # in Recommendation ITU-P R.676-10.
     def gammaw_approx(self, *args, **kwargs):
-        return _ITU676_10.gammaw_approx(*args, **kwargs)
+        return _ITU676_10().gammaw_approx(*args, **kwargs)
 
 
 __model = __ITU676()

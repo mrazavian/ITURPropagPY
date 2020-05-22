@@ -26,22 +26,24 @@ def __gamma0_exact__676_9_11__(self, f, P, rho, T):
     e = rho * T / 216.7   # water vapour partial pressure
     p = P - e              #  Dry air pressure
 
-    f_ox = self.f_ox
+    N_pp_ox = 0
+    for ii in np.arange(np.size(self.f_ox)):
+        f_ox = self.f_ox[ii]
 
-    D_f_ox = self.a3 * 1e-4 * (p * (theta ** (0.8 - self.a4)) +
-                               1.1 * e * theta)
-    D_f_ox = np.sqrt(D_f_ox**2 + 2.25 * 1e-6)
+        D_f_ox = self.a3[ii] * 1e-4 * (p * (theta ** (0.8 - self.a4[ii])) +
+                                1.1 * e * theta)
+        D_f_ox = np.sqrt(D_f_ox**2 + 2.25 * 1e-6)
 
-    delta_ox = (self.a5 + self.a6 * theta) * 1e-4 * (p + e) * theta**0.8
+        delta_ox = (self.a5[ii] + self.a6[ii] * theta) * 1e-4 * (p + e) * theta**0.8
 
-    F_i_ox = f / f_ox * ((D_f_ox - delta_ox * (f_ox - f)) /
-                         ((f_ox - f) ** 2 + D_f_ox ** 2) +
-                         (D_f_ox - delta_ox * (f_ox + f)) /
-                         ((f_ox + f) ** 2 + D_f_ox ** 2))
+        F_i_ox = f / f_ox * ((D_f_ox - delta_ox * (f_ox - f)) /
+                            ((f_ox - f) ** 2 + D_f_ox ** 2) +
+                            (D_f_ox - delta_ox * (f_ox + f)) /
+                            ((f_ox + f) ** 2 + D_f_ox ** 2))
 
-    Si_ox = self.a1 * 1e-7 * p * theta**3 * np.exp(self.a2 * (1 - theta))
+        Si_ox = self.a1[ii] * 1e-7 * p * theta**3 * np.exp(self.a2[ii] * (1 - theta))
 
-    N_pp_ox = Si_ox * F_i_ox
+        N_pp_ox = N_pp_ox + Si_ox * F_i_ox
 
     d = 5.6e-4 * (p + e) * theta**0.8
     
@@ -49,7 +51,7 @@ def __gamma0_exact__676_9_11__(self, f, P, rho, T):
             (d * 6.14e-5 / (d**2 + f**2) +
              1.4e-12 * p * theta**1.5 / (1 + 1.9e-5 * f**1.5))
 
-    N_pp = N_pp_ox.sum() + N_d_pp
+    N_pp = N_pp_ox + N_d_pp
 
     gamma = 0.1820 * f * N_pp           # Eq. 1 [dB/km]
     return gamma
@@ -94,7 +96,7 @@ class __ITU676():
     def gamma0_exact(self, f, P, rho, t):
         # Abstract method to compute the specific attenuation due to dry
         # atmoshere
-        fcn = np.vectorize(self.instance.gamma0_exact)
+        fcn = np.vectorize(self.instance.gamma0_exact, excluded=[1,2,3])
         return fcn(f, P, rho, t)
 
 

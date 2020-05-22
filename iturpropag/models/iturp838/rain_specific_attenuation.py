@@ -13,7 +13,7 @@ def rain_specific_attenuation(R, f, el, tau):
     """
     Specific attenuation model for rain for use in prediction methods
     A method to compute the specific attenuation γ_R (dB/km) from rain. The
-    value is obtained from hte rain rate R (mm/h) using a power law
+    value is obtained from the rain rate R (mm/h) using a power law
     relationship.
 
     ..math:

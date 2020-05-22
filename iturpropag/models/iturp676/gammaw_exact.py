@@ -20,24 +20,25 @@ def __gammaw_exact__676_9_11__(self, f, P, rho, T):
     e = rho * T / 216.7  # water vapour partial pressure
     p = P - e           # Dry air pressure
 
-    f_wv = self.f_wv
+    N_pp_wv = 0
+    for ii in np.arange(np.size(self.f_wv)):
+        f_wv = self.f_wv[ii]
 
-    D_f_wv = self.b3 * 1e-4 * (p * theta ** self.b4 +
-                               self.b5 * e * theta ** self.b6)
+        D_f_wv = self.b3[ii] * 1e-4 * (p * theta ** self.b4[ii] +
+                                self.b5[ii] * e * theta ** self.b6[ii])
 
-    D_f_wv = 0.535 * D_f_wv + \
-        np.sqrt(0.217 * D_f_wv**2 + 2.1316e-12 * f_wv**2 / theta)
+        D_f_wv = 0.535 * D_f_wv + \
+            np.sqrt(0.217 * D_f_wv**2 + 2.1316e-12 * f_wv**2 / theta)
 
-    F_i_wv = f / f_wv * ((D_f_wv) / ((f_wv - f)**2 + D_f_wv**2) +
-                         (D_f_wv) / ((f_wv + f)**2 + D_f_wv**2))
+        F_i_wv = f / f_wv * ((D_f_wv) / ((f_wv - f)**2 + D_f_wv**2) +
+                            (D_f_wv) / ((f_wv + f)**2 + D_f_wv**2))
 
-    Si_wv = self.b1 * 1e-1 * e * theta**3.5 * np.exp(self.b2 * (1 - theta))
+        Si_wv = self.b1[ii] * 1e-1 * e * theta**3.5 * np.exp(self.b2[ii] * (1 - theta))
 
-    N_pp_wv = Si_wv * F_i_wv
+        N_pp_wv = N_pp_wv + Si_wv * F_i_wv
 
-    N_pp = N_pp_wv.sum()
 
-    gamma = 0.1820 * f * N_pp           # Eq. 1 [dB/km]
+    gamma = 0.1820 * f * N_pp_wv           # Eq. 1 [dB/km]
     return gamma
 
 
@@ -80,7 +81,7 @@ class __ITU676():
     def gammaw_exact(self, f, P, rho, t):
         # Abstract method to compute the specific attenuation due to water
         # vapour
-        fcn = np.vectorize(self.instance.gammaw_exact)
+        fcn = np.vectorize(self.instance.gammaw_exact, excluded=[1,2,3])
         return fcn(f, P, rho, t)
 
 
