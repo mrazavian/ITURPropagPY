@@ -77,6 +77,9 @@ class _ITU1511_2():
             self._altitude = bicubic_2D_interpolator(np.flipud(lats), lons,
                                                      np.flipud(vals))
 
+        # In this recommendation the longitude is encoded with format -180 to
+        # 180 whereas we always use 0 - 360 encoding
+        lon[lon > 180] = lon[lon > 180] - 360
         return self._altitude(
                 np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape)
 
