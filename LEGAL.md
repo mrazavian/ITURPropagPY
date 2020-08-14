@@ -1,1 +1,0 @@
-Confirmed that there is no patent in this version of Python Implementation Software.
